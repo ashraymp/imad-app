@@ -5,13 +5,35 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var Page_one = {
-    title:'ALERT!',
-    Heading : 'Change of class',
-    section : ' 4B ',
-    subject  : 'Java ',
-    date : 'Today',
-    memo : '<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>'
+var Pages = {
+    one:{
+        title:'ALERT!',
+        Heading : 'Change of class',
+        section : ' 4B ',
+        subject  : 'Java ',
+        date : 'Today',
+        memo : '<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>'
+        }
+        ,
+    two:{
+        title:'Alert!',
+        Heading : 'Change of class',
+        section : ' A ',
+        subject  : 'C++ ',
+        date : 'Tomorrow',
+        memo : '<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>'
+        
+    },
+    three:{
+        title:'ALERT!',
+        Heading : 'Change of class',
+        section : ' 4B ',
+        subject  : 'Java ',
+        date : 'Today',
+        memo : `<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>
+            <a href="/">Go back</a>`
+    }
+    
 };
 function create_template(data){
     var date=data.date,title=data.title,Heading=data.Heading,section=data.section,subject=data.subject,memo=data.memo;
@@ -50,13 +72,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/Page-one', function (req, res) {
-  res.send(create_template(Page_one));
+  res.send(create_template(one));
 });
 app.get('/Page-two', function (req, res) {
-    res.sendFile(path.join(__dirname, 'ui', 'Page-two.html'));
+   // res.sendFile(path.join(__dirname, 'ui', 'Page-two.html'));
+   res.send(create_template(two));
 });
 app.get('/Page-three', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'Page-three.html'));
+   //res.sendFile(path.join(__dirname, 'ui', 'Page-three.html'));
+   res.send(create_template(three));
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
