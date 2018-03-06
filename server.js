@@ -5,7 +5,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var Pages = {
+var Pages = {//used to replace contents of each and every page
     one:{
         title:'ALERT!',
         Heading : 'Change of class',
@@ -13,8 +13,7 @@ var Pages = {
         subject  : 'Java ',
         date : 'Today',
         memo : '<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>'
-        }
-        ,
+        },
     two:{
         title:'Alert!',
         Heading : 'Change of class',
@@ -33,7 +32,6 @@ var Pages = {
         memo : `<p>Today,Java class will be held in room number 132!Submit assignments.Today,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p><p>Today,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignmentsToday,Java class will be held in room number 132!Submit assignments</p>
             <a href="/">Go back</a>`
     }
-    
 };
 function create_template(data){
     var date=data.date,title=data.title,Heading=data.Heading,section=data.section,subject=data.subject,memo=data.memo;
@@ -71,9 +69,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/Page-one', function (req, res) {
-  res.send(create_template(Pages.one));
+app.get('/:articleName', function (req, res) {
+    var articleName=req.params.articleName;
+  res.send(create_template(Pages[articleName]));
 });
+/*
 app.get('/Page-two', function (req, res) {
    // res.sendFile(path.join(__dirname, 'ui', 'Page-two.html'));
    res.send(create_template(Pages.two));
@@ -81,13 +81,13 @@ app.get('/Page-two', function (req, res) {
 app.get('/Page-three', function (req, res) {
    //res.sendFile(path.join(__dirname, 'ui', 'Page-three.html'));
    res.send(create_template(Pages.three));
-
+});*/
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
 
-});
+
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
