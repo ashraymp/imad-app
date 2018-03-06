@@ -50,7 +50,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/Page-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'Page-one.html'));
+  res.send(create_template(Page_one));
 });
 app.get('/Page-two', function (req, res) {
     res.sendFile(path.join(__dirname, 'ui', 'Page-two.html'));
